@@ -9,15 +9,16 @@ import webserver.common.ContentType;
 import webserver.common.HttpStatus;
 import webserver.http.request.HttpRequest;
 import webserver.http.response.HttpResponse;
+import webserver.http.session.HttpSession;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
-public class UserCreationHandler implements HttpRequestHandler {
+public class SignUpHandler implements HttpRequestHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserCreationHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(SignUpHandler.class);
     @Override
     public void handle(HttpRequest request, HttpResponse response) throws IOException {
         // 기존의 handleUserCreation 메서드 로직을 그대로 복사
@@ -46,6 +47,10 @@ public class UserCreationHandler implements HttpRequestHandler {
         User user = new User(userId, password, name, email);
         Database.addUser(user);
 
+        HttpSession session = request.getSession();
+        session.setAttributes("user", user);
+
+        response.addSessionCookie(session.getId());
         response.sendRedirect("/index.html");
     }
 
