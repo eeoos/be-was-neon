@@ -36,8 +36,10 @@ public class HttpResponse {
         byte[] body = FileUtils.readFileBytes("/login/index.html");
         status(HttpStatus.UNAUTHORIZED)
                 .contentType(ContentType.HTML)
+                .addHeaders("WWW-Authenticate", "Basic realm=\"User Authentication\"")
                 .body(body)
                 .send();
+
     }
 
     public void send(HttpStatus status, ContentType contentType, byte[] body) throws IOException {
