@@ -34,14 +34,6 @@ public class StaticFileHandler implements HttpRequestHandler {
                 String content = new String(body, StandardCharsets.UTF_8);
                 content = processDynamicHtml(content, request);
 
-                if (path.equals("/user/index.html")) {
-                    if (request.getSession().getAttribute("user") != null) {
-                        content = processUserList(content);
-                    } else {
-                        response.send401();
-                        return;
-                    }
-                }
                 body = content.getBytes(StandardCharsets.UTF_8);
             }
 
@@ -50,20 +42,6 @@ public class StaticFileHandler implements HttpRequestHandler {
             logger.error("파일을 찾을 수 없습니다: {}", path);
             response.send404();
         }
-    }
-
-    private static String processUserList(String content) {
-        StringBuilder sb = new StringBuilder();
-        for (User user : Database.findAll()) {
-            sb.append("<tbody><tr>\n");
-            sb.append(String.format("<td>%s</td>\n", user.getUserId()));
-            sb.append(String.format("<td>%s</td>\n", user.getName()));
-            sb.append(String.format("<td>%s</td>\n", user.getEmail()));
-            sb.append("</tr></tbody>");
-        }
-
-        content = content.replaceAll("<tbody></tbody>", sb.toString());
-        return content;
     }
 
     private String processDynamicHtml(String content, HttpRequest request) {
@@ -75,6 +53,9 @@ public class StaticFileHandler implements HttpRequestHandler {
                     "<ul class=\"header__menu\">\n" +
                             "          <li class=\"header__menu__item\">\n" +
                             "            <span>안녕하세요, " + user.getName() + "님</span>\n" +
+                            "          </li>\n" +
+                            "          <li class=\"header__menu__item\">\n" +
+                            "            <a class=\"btn btn_ghost btn_size_s\" href=\"/user/list\">사용자 목록</a>\n" +
                             "          </li>\n" +
                             "          <li class=\"header__menu__item\">\n" +
                             "<form action=\"/user/logout\" method=\"post\">\n" +
