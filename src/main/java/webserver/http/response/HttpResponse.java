@@ -32,6 +32,14 @@ public class HttpResponse {
         this.contentType = ContentType.HTML;
     }
 
+    public void send401() throws IOException {
+        byte[] body = FileUtils.readFileBytes("/login/index.html");
+        status(HttpStatus.UNAUTHORIZED)
+                .contentType(ContentType.HTML)
+                .body(body)
+                .send();
+    }
+
     public void send(HttpStatus status, ContentType contentType, byte[] body) throws IOException {
         status(status)
                 .contentType(contentType)

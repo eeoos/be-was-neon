@@ -1,5 +1,6 @@
 package router.handler.impl;
 
+import db.Database;
 import model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,15 @@ public class StaticFileHandler implements HttpRequestHandler {
             if (contentType == ContentType.HTML) {
                 String content = new String(body, StandardCharsets.UTF_8);
                 content = processDynamicHtml(content, request);
+
+                if (path.equals("/user/index.html")) {
+                    if (request.getSession().getAttribute("user") != null) {
+                        content = processUserList(content);
+                    } else {
+                        response.send401();
+                        return;
+                    }
+                }
                 body = content.getBytes(StandardCharsets.UTF_8);
             }
 
@@ -40,6 +50,20 @@ public class StaticFileHandler implements HttpRequestHandler {
             logger.error("파일을 찾을 수 없습니다: {}", path);
             response.send404();
         }
+    }
+
+    private static String processUserList(String content) {
+        StringBuilder sb = new StringBuilder();
+        for (User user : Database.findAll()) {
+            sb.append("<tbody><tr>\n");
+            sb.append(String.format("<td>%s</td>\n", user.getUserId()));
+            sb.append(String.format("<td>%s</td>\n", user.getName()));
+            sb.append(String.format("<td>%s</td>\n", user.getEmail()));
+            sb.append("</tr></tbody>");
+        }
+
+        content = content.replaceAll("<tbody></tbody>", sb.toString());
+        return content;
     }
 
     private String processDynamicHtml(String content, HttpRequest request) {
