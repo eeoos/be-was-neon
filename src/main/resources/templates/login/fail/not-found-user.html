@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인 실패</title>
+
+    <!-- reset & global stylesheet가 이미 프로젝트에 있다면 그대로 사용 -->
+    <link rel="stylesheet" href="../../reset.css" />
+    <link rel="stylesheet" href="../../global.css" />
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100dvh;
+            align-items: center;
+            justify-content: center;
+            font-family: "Pretendard", "Apple SD Gothic Neo", sans-serif;
+            background: #fafafa;
+        }
+
+        .error-card {
+            width: 320px;
+            padding: 32px 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .error-card__title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .error-card__message {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.15s ease-in-out;
+        }
+        .btn_primary {
+            color: #fff;
+            background: #3a7afe;
+        }
+        .btn_primary:hover {
+            background: #296af3;
+        }
+        .btn_ghost {
+            color: #3a7afe;
+            background: transparent;
+        }
+        .btn_ghost:hover {
+            background: rgba(58, 122, 254, 0.1);
+        }
+    </style>
+</head>
+<body>
+<section class="error-card">
+    <h1 class="error-card__title">로그인 실패</h1>
+    <p class="error-card__message">
+        존재하지 않는 사용자입니다.<br />
+        다시 시도해 주세요.
+    </p>
+
+    <a href="/login/index.html" class="btn btn_primary">로그인 화면으로</a>
+    <a href="/index.html" class="btn btn_ghost" style="margin-left: 8px;">홈으로</a>
+</section>
+</body>
+</html>

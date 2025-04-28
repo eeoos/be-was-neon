@@ -9,9 +9,9 @@ import java.nio.charset.StandardCharsets;
 public class FileUtils {
 
     public static byte[] readFileBytes(String relativePath) throws IOException {
-        try (InputStream is = FileUtils.class.getClassLoader().getResourceAsStream("static" + relativePath)) {
+        try (InputStream is = FileUtils.class.getClassLoader().getResourceAsStream("templates" + relativePath)) {
             if (is == null) {
-                throw new FileNotFoundException("Resource not found: static" + relativePath);
+                throw new FileNotFoundException("Resource not found: templates" + relativePath);
             }
             return is.readAllBytes();
         }
