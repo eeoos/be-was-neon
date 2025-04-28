@@ -56,7 +56,7 @@ public class StaticFileHandler implements HttpRequestHandler {
                         "            <span>안녕하세요, " + name + "님</span>\n" +
                         "          </li>\n" +
                         "          <li class=\"header__menu__item\">\n" +
-                        "            <a class=\"btn btn_ghost btn_size_s\" href=\"/user/list\">사용자 목록</a>\n" +
+                        "            <a class=\"btn btn_contained btn_size_s\" href=\"/user/list\">사용자 목록</a>\n" +
                         "          </li>\n" +
                         "          <li class=\"header__menu__item\">\n" +
                         "<form action=\"/user/logout\" method=\"post\">\n" +
