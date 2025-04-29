@@ -4,6 +4,7 @@ import model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import webserver.http.request.HttpRequest;
+import webserver.http.request.HttpRequestWrapper;
 import webserver.http.response.HttpResponse;
 import webserver.http.session.HttpSession;
 
@@ -27,6 +28,8 @@ public class ArticleFormHandler extends StaticFileHandler {
             return;
         }
 
-        super.handle(request, response);
+        HttpRequest remappedRequest = new HttpRequestWrapper(request, "/article/index.html");
+
+        super.handle(remappedRequest, response);
     }
 }

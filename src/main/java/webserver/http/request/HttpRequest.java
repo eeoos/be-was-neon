@@ -74,6 +74,24 @@ public class HttpRequest {
         return Collections.unmodifiableMap(copy); // Map을 불변으로
     }
 
+    public Map<String, List<String>> getHeaders() {
+        Map<String, List<String>> copy = headers.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> Collections.unmodifiableList(e.getValue()) // value인 List를 불변으로
+                ));
+
+        return Collections.unmodifiableMap(copy); // Map을 불변으로
+    }
+
+    public Map<String, Cookie> getCookies() {
+        return Collections.unmodifiableMap(cookies);
+    }
+
+    public String getBody() {
+        return body;
+    }
+
     public String getMethod() {
         return method;
     }
@@ -101,5 +119,9 @@ public class HttpRequest {
 
     public HttpSession getSession() {
         return session;
+    }
+
+    public String getProtocol() {
+        return protocol;
     }
 }
