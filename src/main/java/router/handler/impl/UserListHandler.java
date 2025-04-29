@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 
+import static webserver.http.session.HttpSession.REDIRECT_URL_SESSION_KEY;
+
 public class UserListHandler extends StaticFileHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(UserListHandler.class);
@@ -23,7 +25,10 @@ public class UserListHandler extends StaticFileHandler {
         User user = (User) session.getAttribute("user");
 
         if (user == null) {
-            logger.info("로그인 또는 회원가입 후 이용해주세요.");
+            logger.info("유저 목록은 회원만 조회할 수 있습니다. 로그인 또는 회원가입 후 이용해주세요.");
+            session.setAttributes(REDIRECT_URL_SESSION_KEY, request.getRequestTarget());
+            response.addSessionCookie(session.getId());
+
             response.send401();
             return;
         }

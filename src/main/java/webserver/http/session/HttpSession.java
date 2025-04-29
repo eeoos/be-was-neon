@@ -9,6 +9,7 @@ public class HttpSession {
     private final Map<String, Object> attributes = new HashMap<>();
     private final long creationTime;
     private long lastAccessTime;
+    public static final String REDIRECT_URL_SESSION_KEY = "REDIRECT_AFTER_LOGIN_URL";
 
     public HttpSession() {
         this.id = UUID.randomUUID().toString();

@@ -48,6 +48,12 @@ public class LoginHandler implements HttpRequestHandler {
         session.setAttributes("user", user);
 
         response.addSessionCookie(session.getId());
+        String redirectUrl = (String) session.getAttribute(HttpSession.REDIRECT_URL_SESSION_KEY);
+        logger.debug("redirectUrl: {}", redirectUrl);
+        if (redirectUrl != null) {
+            response.sendRedirect(redirectUrl);
+            return;
+        }
         response.sendRedirect("/index.html");
     }
 
