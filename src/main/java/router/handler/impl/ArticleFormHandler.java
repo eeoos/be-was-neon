@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static webserver.http.session.HttpSession.REDIRECT_URL_SESSION_KEY;
 
-public class ArticleFormHandler extends StaticFileHandler {
+public class ArticleFormHandler extends HtmlFileHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(ArticleFormHandler.class);
     @Override

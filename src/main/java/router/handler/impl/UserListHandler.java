@@ -16,7 +16,7 @@ import java.util.Collection;
 
 import static webserver.http.session.HttpSession.REDIRECT_URL_SESSION_KEY;
 
-public class UserListHandler extends StaticFileHandler {
+public class UserListHandler extends HtmlFileHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(UserListHandler.class);
     @Override
@@ -33,13 +33,13 @@ public class UserListHandler extends StaticFileHandler {
             return;
         }
 
-        byte[] body = FileUtils.readFileBytes("/user/index.html");
-        String content = new String(body, StandardCharsets.UTF_8);
-        logger.info(content);
-        content = replaceHeaderWithLoggedInUser(content, user.getName());
-        content = listUpUsers(content);
+        byte[] fileContent = loadFileContent("/user/index.html");
+        byte[] processedContent = processContent(fileContent, ContentType.HTML, request);
 
-        response.sendOk(ContentType.HTML, content.getBytes(StandardCharsets.UTF_8));
+        String htmlContent = new String(processedContent, StandardCharsets.UTF_8);
+        htmlContent = listUpUsers(htmlContent);
+
+        response.sendOk(ContentType.HTML, htmlContent.getBytes(StandardCharsets.UTF_8));
     }
 
     private String listUpUsers(String content) {
