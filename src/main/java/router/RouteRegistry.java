@@ -1,10 +1,7 @@
 package router;
 
 import router.handler.HttpRequestHandler;
-import router.handler.impl.LoginHandler;
-import router.handler.impl.LogoutHandler;
-import router.handler.impl.SignUpHandler;
-import router.handler.impl.UserListHandler;
+import router.handler.impl.*;
 import webserver.common.HttpMethod;
 
 import java.util.*;
@@ -30,6 +27,7 @@ public class RouteRegistry {
         registerRoute(POST, "/user/login", new LoginHandler());
         registerRoute(POST, "/user/logout", new LogoutHandler());
         registerRoute(GET, "/user/list", new UserListHandler());
+        registerRoute(GET, "/article/index.html", new ArticleFormHandler());
     }
 
     public void registerRoute(HttpMethod method, String path, HttpRequestHandler handler) {
