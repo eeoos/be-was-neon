@@ -7,6 +7,7 @@ import webserver.http.cookie.Cookie;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -111,6 +112,17 @@ public class HttpResponse {
                 .send();
     }
 
+
+    public void send400(String errorMessage) throws IOException {
+        byte[] body = FileUtils.readFileBytes("/errors/400.html");
+        String content = new String(body, StandardCharsets.UTF_8);
+        content = content.replaceAll("errorMessage", errorMessage);
+        status(HttpStatus.BAD_REQUEST)
+                .contentType(ContentType.HTML)
+                .body(content.getBytes(StandardCharsets.UTF_8))
+                .send();
+    }
+
     private void send() throws IOException {
         writeStatusLine();
         writeHeaders();
@@ -178,4 +190,5 @@ public class HttpResponse {
         cookie.setHttpOnly(true);
         addCookie(cookie);
     }
+
 }
