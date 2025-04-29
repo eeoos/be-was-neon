@@ -1,23 +1,20 @@
 package router;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import router.handler.HttpRequestHandler;
+import router.handler.impl.HtmlFileHandler;
 import router.handler.impl.MethodNotAllowHandler;
 import router.handler.impl.StaticFileHandler;
+import webserver.common.ContentType;
 import webserver.http.request.HttpRequest;
-import webserver.http.response.HttpResponse;
-
-import java.io.IOException;
 
 public class Router {
 
     private final RouteRegistry routeRegistry;
-    private final HttpRequestHandler staticFileHandler;
+    private final HttpRequestHandler staticFileHandler = new StaticFileHandler();
+    private final HttpRequestHandler htmlFileHandler = new HtmlFileHandler();
 
     public Router() {
         this.routeRegistry = RouteRegistry.getInstance();
-        this.staticFileHandler = new StaticFileHandler();
     }
 
     public HttpRequestHandler resolveHandler(HttpRequest request) {
@@ -35,7 +32,8 @@ public class Router {
                 return handler;
             }
         }
-            return staticFileHandler;
+        ContentType contentType = ContentType.getContentTypeByPath(path);
+        return contentType == ContentType.HTML ? htmlFileHandler : staticFileHandler;
     }
 }
 

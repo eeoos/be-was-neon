@@ -27,7 +27,9 @@ public class RouteRegistry {
         registerRoute(POST, "/user/login", new LoginHandler());
         registerRoute(POST, "/user/logout", new LogoutHandler());
         registerRoute(GET, "/user/list", new UserListHandler());
+
         registerRoute(GET, "/articles/form", new ArticleFormHandler());
+        registerRoute(POST, "/articles", new ArticleWritingHandler());
     }
 
     public void registerRoute(HttpMethod method, String path, HttpRequestHandler handler) {
