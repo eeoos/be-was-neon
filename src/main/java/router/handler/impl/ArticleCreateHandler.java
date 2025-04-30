@@ -16,8 +16,8 @@ import java.util.Map;
 
 import static webserver.http.session.HttpSession.REDIRECT_URL_SESSION_KEY;
 
-public class ArticleWritingHandler implements HttpRequestHandler {
-    private static final Logger logger = LoggerFactory.getLogger(ArticleWritingHandler.class);
+public class ArticleCreateHandler implements HttpRequestHandler {
+    private static final Logger logger = LoggerFactory.getLogger(ArticleCreateHandler.class);
     @Override
     public void handle(HttpRequest request, HttpResponse response) throws IOException {
         HttpSession session = request.getSession();

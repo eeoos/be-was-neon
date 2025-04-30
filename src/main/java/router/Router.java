@@ -20,8 +20,7 @@ public class Router {
     public HttpRequestHandler resolveHandler(HttpRequest request) {
         String path = request.getPath();
         String method = request.getMethod();
-
-
+        
         if (routeRegistry.hasRoutesForPath(path)) {
             if (!routeRegistry.isMethodAllowed(method, path)) {
                 return new MethodNotAllowHandler(routeRegistry.getAllowedMethods(path));

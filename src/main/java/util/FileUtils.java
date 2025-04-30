@@ -8,6 +8,10 @@ import java.nio.charset.StandardCharsets;
 
 public class FileUtils {
 
+    private FileUtils() {
+
+    }
+
     public static byte[] readFileBytes(String relativePath) throws IOException {
         try (InputStream is = FileUtils.class.getClassLoader().getResourceAsStream("templates" + relativePath)) {
             if (is == null) {
