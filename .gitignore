@@ -143,6 +143,10 @@ replay_pid*
 ### macOS ###
 # General
 .DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
+
 .AppleDouble
 .LSOverride
 

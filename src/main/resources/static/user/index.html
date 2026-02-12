@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../reset.css" rel="stylesheet" />
+    <link href="../global.css" rel="stylesheet" />
+    <link href="../main.css" rel="stylesheet" />
+    <title>사용자 목록</title>
+    <style>
+        .user-list {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .user-list__title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .user-list__table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .user-list__table th {
+            background-color: #f5f5f5;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+        }
+
+        .user-list__table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .user-list__table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .user-list__table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .user-empty {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+
+        .user-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .user-pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .user-pagination__item {
+            margin: 0 5px;
+        }
+
+        .user-pagination__link {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .user-pagination__link.active {
+            background-color: #3a7afe;
+            color: #fff;
+        }
+
+        .user-pagination__link:hover:not(.active) {
+            background-color: #f0f0f0;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #eee;
+        }
+
+        .user-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .user-status--active {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .user-status--inactive {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <a href="/"><img src="../img/signiture.svg" /></a>
+        <ul class="header__menu">
+            <li class="header__menu__item">
+                <a class="btn btn_contained btn_size_s" href="/login/index.html">로그인</a>
+            </li>
+            <li class="header__menu__item">
+                <a class="btn btn_ghost btn_size_s" href="/registration/index.html">
+                    회원 가입
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div class="wrapper">
+        <div class="user-list">
+            <h1 class="user-list__title">사용자 목록</h1>
+            <table class="user-list__table">
+                <thead>
+                <tr>
+                    <th>아이디</th>
+                    <th>이름</th>
+                    <th>이메일</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

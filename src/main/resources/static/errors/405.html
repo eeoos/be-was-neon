@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>405 - 메서드 지원 안함</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 72px;
+            margin: 0;
+            color: #fd7e14;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        p {
+            color: #6c757d;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .allowed-methods {
+            font-weight: bold;
+            color: #0d6efd;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #0d6efd;
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #0b5ed7;
+        }
+    </style>
+</head>
+<body>
+<div class="error-container">
+    <h1>405</h1>
+    <h2>지원하지 않는 메서드입니다</h2>
+    <p>
+        요청하신 경로에서는 <span class="allowed-methods">{ALLOWED_METHODS}</span> 메서드만 지원합니다.
+        사용하신 메서드는 이 경로에서 허용되지 않습니다.
+    </p>
+    <a href="/" class="btn">홈페이지로 돌아가기</a>
+</div>
+</body>
+</html>
